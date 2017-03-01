@@ -6,47 +6,58 @@ using System.Threading.Tasks;
 
 namespace BasicRectangle
 {
-    class Rectangle
+    public class Rectangle
     {
-        private double length { get; set; }
-        private double width { get; set; }
-        private double area { get; set; }
+        private double length;
+        private double width;
+        private double area;
 
-        public Rectangle()
+        public double Length
         {
-            length = 0;
-            width = 0;
-            area = getArea(0, 0);
+            get { return this.length; }
+            set { this.length = value; }
+        }
+ 
+        public double Width
+        {
+            get { return this.width; }
+            set
+            {
+                if (value <= 0)
+                {
+                    Console.WriteLine("Invalid width. Please use only positive values.");
+                }
+                else
+                {
+                    this.width = value;
+                }
+            }
         }
 
-        public Rectangle(double inputLength, double inputWidth)
-        {
-            length = inputLength;
-            width = inputWidth;
-            area = getArea(inputLength, inputWidth);
-        }
+        //public double getArea()
+        //{
+        //    this.area = Length * Width;
+        //    printInfo();
+        //    return area;
+        //}
 
-        private double getArea(double inputLength, double inputWidth)
-        {
-            area = inputLength * inputWidth;
-            printInfo(inputLength, inputWidth, area);
-            return area;
-        }
-
-        public static void printInfo(double inputLength, double inputWidth, double area)
-        {
-            string rectangleDimensions = "Rectangle length: " + inputLength + "\nRectangle width: " + inputWidth + "\nRectangle area: " + area;
-            Console.WriteLine(rectangleDimensions);
-        }
+        //public void printInfo()
+        //{
+        //    string rectangleDimensions = "Rectangle length: " + this.length + "\nRectangle width: " + this.width + "\nRectangle area: " + this.area;
+        //    Console.WriteLine(rectangleDimensions);
+        //}
     }
 
     class Program
     { 
         static void Main(string[] args)
         {
-            Rectangle r1 = new Rectangle();
-            Rectangle r2 = new Rectangle(100.5, 25);
-            Console.ReadKey();
+            Rectangle r2 = new Rectangle();
+            r2.Length = 100;
+            r2.Width = 0;
+       
+            Console.WriteLine("r2 length: {0}", r2.Length);
+            Console.WriteLine("**********");
         }
     }
 }
